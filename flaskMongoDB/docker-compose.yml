@@ -1,0 +1,15 @@
+web:
+  build: ./bot
+  command: python -u ./bot/manage.py
+  ports:
+    - "8000:8000"
+  volumes:
+    - .:/todo
+  links:
+    - db:db
+db:
+    image: mongo:latest
+    ports:
+        - "27017:27017"
+    volumes:
+        - "/mongo/db/data:/data2/db"

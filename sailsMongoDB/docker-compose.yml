@@ -1,0 +1,21 @@
+version: '2'
+services:
+  sails_api_container:
+    container_name: api-vi
+    ports:
+      - "1337:1337"
+    command: "sails lift"
+    volumes:
+      - "../:/server"
+      - "/usr/lib/node_modules/sails:/usr/lib/node_modules/sails"
+    build: ./api
+    links:
+      - mongo:mongo
+
+  mongo:
+    container_name: "mongo-storage"
+    image: mongo:latest
+    ports:
+      - "27017:27017"
+    volumes:
+     - "/mongo/db/data:/data/db"

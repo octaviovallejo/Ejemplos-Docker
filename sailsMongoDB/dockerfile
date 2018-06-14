@@ -1,0 +1,13 @@
+FROM iojs:slim
+
+RUN apt-get update && \
+	apt-get install -y git
+
+RUN npm install -g sails grunt-cli bower nodejs pm2 npm-check-updates
+RUN mkdir /server
+
+VOLUME ["/server"]
+
+WORKDIR /server
+
+EXPOSE 1337
